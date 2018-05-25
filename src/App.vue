@@ -14,6 +14,7 @@ export default {
 </style>
 <!-- 公共css 引入 入口 App.vue-->
 <style type="text/scss" lang="scss">
+@import url("components/mpvue-rich/rich.css");
   @import "../static/scss/public.scss";
   page{
     width: 100%;

@@ -1,0 +1,243 @@
+.richText {
+    width: 100%;
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.richText view {
+    word-break: hyphenate;
+}
+
+.richText .inline {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.richText .div {
+    margin: 0;
+    padding: 0;
+}
+
+.richText .h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+.richText .h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+.richText .h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+.richText .h4 {
+    margin: 1.33em 0;
+}
+
+.richText .h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+.richText .h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+.richText .h1,
+.richText .h2,
+.richText .h3,
+.richText .h4,
+.richText .h5,
+.richText .h6,
+.richText .b,
+.richText .strong {
+    font-weight: bolder;
+}
+
+.richText .p {
+    margin: 1em 0;
+}
+
+.richText .i,
+.richText .cite,
+.richText .em,
+.richText .var,
+.richText .address {
+    font-style: italic;
+}
+
+.richText .pre,
+.richText .tt,
+.richText .code,
+.richText .kbd,
+.richText .samp {
+    font-family: monospace;
+}
+
+.richText .pre {
+    overflow: auto;
+    background: #f5f5f5;
+    padding: 8px;
+    white-space: pre;
+    margin: 1em 0px;
+}
+
+.richText .code {
+    display: inline;
+    background: #f5f5f5;
+}
+
+.richText .big {
+    font-size: 1.17em;
+}
+
+.richText .small,
+.richText .sub,
+.richText .sup {
+    font-size: 0.83em;
+}
+
+.richText .sub {
+    vertical-align: sub;
+}
+
+.richText .sup {
+    vertical-align: super;
+}
+
+.richText .s,
+.richText .strike,
+.richText .del {
+    text-decoration: line-through;
+}
+
+.richText .strong,
+.richText .s {
+    display: inline;
+}
+
+.richText .a {
+    color: deepskyblue;
+}
+
+.richText .video {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.richText .video-video {
+    width: 100%;
+}
+
+.richText .img {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.richText .blockquote {
+    margin: 5px 0;
+    padding: 10px 0 10px 10px;
+    font-family: Courier, Calibri, "宋体";
+    background: #f5f5f5;
+    border-left: 3px solid #dbdbdb;
+}
+
+.richText .blockquote .p {
+    margin: 0;
+}
+
+.richText .ul,
+.richText .ol {
+    display: block;
+    margin: 1em 0;
+    padding-left: 16px;
+}
+
+.richText .ol {
+    list-style-type: disc;
+}
+
+.richText .ol {
+    list-style-type: decimal;
+}
+
+.richText .li {
+    display: list-item;
+    align-items: baseline;
+    text-align: match-parent;
+}
+
+.richText .ul .ul,
+.richText .ol .ul {
+    list-style-type: circle;
+}
+
+.richText .ol .ol .ul,
+.richText .ol .ul .ul,
+.richText .ul .ol .ul,
+.richText .ul .ul .ul {
+    list-style-type: square;
+}
+
+.richText .u {
+    text-decoration: underline;
+}
+
+.richText .hide {
+    display: none;
+}
+
+.richText .del {
+    display: inline;
+}
+
+.richText .figure {
+    overflow: hidden;
+}
+
+.richText .table {
+    width: 100%;
+}
+
+.richText .thead,
+.richText .tfoot,
+.richText .tr {
+    display: flex;
+    flex-direction: row;
+}
+
+.richText .tr {
+    width: 100%;
+    display: flex;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.richText .th,
+.richText .td {
+    display: flex;
+    width: 580px;
+    overflow: auto;
+    flex: 1;
+    padding: 5px;
+    border-left: 1px solid #e0e0e0;
+}
+
+.richText .td:last {
+    border-top: 1px solid #e0e0e0;
+}
+
+.richText .th {
+    background: #f0f0f0;
+    border-top: 1px solid #e0e0e0;
+}
