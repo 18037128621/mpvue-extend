@@ -1,119 +1,88 @@
-# mpvue-netbar
+﻿##  使用手册
 
-> mpvue 组件化开发 地图组件系列
+<code>mpvue</code> 继承自 <code>Vue.js</code>，其技术规范和语法特点与 <code>Vue.js</code> 保持一致。
 
-## 设计初衷
-&nbsp;&nbsp;本人喜欢上网,穿梭各大城市之间时 眼光不光停留在山水高楼之间 也会驻扎于网咖，因为没钱住旅馆 那仿佛就像我的家，我的港湾，正好基于mpvue就想开发一套找网咖的小程序
-1.0版本：在借鉴了大神小明找厕所小程序版后开发的，具体功能如下:  
-1.定位附近网咖  
-2.展示网咖信息  
-3.点击绘制步行路线  
-4.手机定位导航  
-emmmm, 我知道这段开门见山的话很拙 没事 感兴趣你继续往下瞅瞅~
+本框架以mpvue为核心，进行二次开发，添加图像处理机制，集成集成Font Awesome字体图标，flyio数据连接，echar图表（待考虑）腾讯地图，以及原生weUI并将持续扩展
 
-### 项目入口
-<p>
-  <img alt="" src="./screenshots/searchBar.jpg"/>
-</p>
+本文档适用于有一定 Vue.js 使用经验的开发者。
 
+1.下载后
 
-## 初始化
-
-``` bash
-# 全局安装 vue-cli
-$ npm install --global vue-cli
-
-# 创建一个基于 mpvue-quickstart 模板的新项目
-$ vue init mpvue/mpvue-quickstart mpvue-network
-
-# 安装依赖
-$ cd mpvue-network
-$ npm install  或者 cnpm install (淘宝镜像)
-# 启动构建
-$ npm run dev
 ```
-## 项目主结构
-> vue 组件化
+npm i
 ```
-│  
-├─api                         //接口 js 支持wx promise写法
-│      requestIntercept.js    
-│      wxp.js
-│      
-├─components                  //组件
-│      address.vue            //展示bar地址信息组件
-│      net-fixed.vue          //定位按钮组件 用于跳转
-│      net-map.vue            //地图组件基于wx map
-│      permis.vue             //权限组件基于 wx 权限
-│      
-├─pages                       //小程序页面
-│  ├─goBar                    //Route 步行规划页面
-│  │      index.vue
-│  │      main.js             
-│  │      
-│  └─index                    //项目主页面 数据的分配
-│          index.vue
-│          main.js
-│          
-├─store                       // vuex
-│      action.js
-│      getters.js
-│      index.js
-│      mutation-types.js
-│      mutations.js
-│      state.js
-├─utils                       // 工具类
-│
-│  App.vue                    // 不解释
-│  bus.js                     // Vue Bus
-│  global.js                  // Vue.prototype 拓展 wx api 
-│  main.js                    // mpvue 入口
+2.运行
+
 ```
-
-### 设计流程图
-<p>
-  <img alt="" src="./screenshots/index.png"/>
-  <img alt="" src="./screenshots/permis.png"/>
-  <img alt="" src="./screenshots/main.png"/>
-</p>
-
-### js部分
-&nbsp;&nbsp;这是 pages下index的主页面 组件思想编写, 数据采用vuex存储 && 组件通信 
-``` js
-<div class="container">
-    <div v-if="permit">
-      <net-map
-        :longitude="longitude"
-        :latitude="latitude"
-        :search="search">
-      </net-map>
-      <net-address></net-address>
-      <net-fixed :cname="fxClass"
-                 typeInfo="info"
-                 :fxShow="fxShow"
-                 @click="goDetail">
-
-      </net-fixed>
-    </div>
-    <permission
-      @changePermit="changePermit"
-      @setLocation="setLocation"
-      @getUserInfo="getUserInfo"
-      @openSetting="openSetting">
-    </permission>
-  </div>
+npm run dev
 ```
+3.你将在框架根目录下找到“dist”
+使用web开发者工具（微信开发者工具）打开dist目录
 
-### 总结
-&nbsp;&nbsp;相对于mpvue 就是算踩坑了 里面有很多意想不到的问题的，对于该项目还是总结以下几点:    
-1.在mpvue里尽量不要用小程序生命周期。    
-2.在mpvue里没有router每个页面需要配置main.js以及接口交互最好用flyio,如果对这几点深感洁癖的追求完美的可以用大神的插件:      
-* [mpvue-entry](https://github.com/F-loat/mpvue-entry) - 集中式页面配置，不再需要重复编辑各页面的 main.js 文件  
-* [mpvue-router-patch](https://github.com/F-loat/mpvue-router-patch) - 在 mpvue 中使用 vue-router 兼容的路由写法  
-* [fly](https://github.com/wendux/fly) - 支持所有JavaScript运行时请求转发和基于Promise的HTTP客户端    
+## 框架原理
+- 以==mpvue==为核心，保留了vue.runtime核心，无缝使用vue.js的基础能力
+- 本框架 提供了将 vue 的模板语法转换到小程序的 wxml 语法的能力
+- 修改了 vue 的建构配置，使之构建出符合小程序项目结构的代码格式： json/wxml/wxss/js 文件
+## 实例生命周期
+整体同vue，但是生命周期因为掺入了小程序一些独特的生命周期所以请**注！意！下！面！内！容！**
+### 1.在编写时请使用vue生命周期
+<ul>
+<li>beforeCreate</li>
+<li>created</li>
+<li>beforeMount</li>
+<li>mounted</li>
+<li>beforeUpdate</li>
+<li>updated</li>
+<li>activated</li>
+<li>deactivated</li>
+<li>beforeDestroy</li>
+<li>destroyed</li>
+</ul>
+详细见vue生命周期<a href="https://cn.vuejs.org/v2/api/#选项-生命周期钩子">生命周期钩子</a>
+2.支持小程序生命周期但请不要轻易使用
+除了 Vue 本身的生命周期外，mpvue
+还兼容了小程序生命周期，这部分生命周期钩子的来源于<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html">微信小程序的 Page</a>， 除特殊情况外
 
-3.模块化思想很重要 写之前整理好  
-4.webpack 解析wx 需要配置，mpvue框架 组件化css 需要配置 等等都需要注意 有问题请看mpvue的Issues    
-5.mpvue 数据data方面不能放过多数据 要把业务和组件抽离分开    
-6.真的意识到写好项目不难，但是写出一个可维护且高质量的代码真的很难。
-7.该项目目前是1.0版本, 默认只是查询附近网吧功能，实际上组件已经抽离出来 可通过父组件传值改变搜索的内容，后期还会逐步升级，希望通过爬虫获取详情数据，敬请期待。
+**不！建！议！使！用！小！程！序！的！生！命！周！期！钩！子！**。
+
+下面说说支持的小程序生命周期
+
+**app 部分：**
+- onLaunch，初始化
+- onShow，当小程序启动，或从后台进入前台显示
+- onHide，当小程序从前台进入后台
+
+**page 部分：**
+- onLoad，监听页面加载
+- onShow，监听页面显示
+- onReady，监听页面初次渲染完成
+- onHide，监听页面隐藏
+- onUnload，监听页面卸载
+- onPullDownRefresh，监听用户下拉动作
+- onReachBottom，页面上拉触底事件的处理函数
+- onShareAppMessage，用户点击右上角分享
+- onPageScroll，页面滚动
+
+![image](http://mpvue.com/assets/lifecycle.jpg)
+## 模板语法
+
+几乎全支持 官方文档：模板语法，下面讲下不支持的情况。
+
+### 1.不支持 纯-HTML
+也就是说 v-html 指令不能用。
+### 2不支持部分复杂的 JavaScript 渲染表达式
+框架会把 template 中的 <code>{{}}</code> 双花括号的部分，直接编码到 wxml 文件中，由于微信小程序的能力限制(<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/data.html">数据绑定</a>)，所以无法支持复杂的 JavaScript 表达式。
+
+目前可以使用的有 + - * % ?: ! == === > < [] .，剩下的还待完善。
+
+```
+<!-- 这种就不支持，建议写 computed -->
+<p>{{ message.split('').reverse().join('') }}</p>
+
+<!-- 但写在 @event 里面的表达式是都支持的，因为这部分的计算放在了 vdom 里面 -->
+<ul>
+    <li v-for="item in list">
+        <div @click="clickHandle(item, index, $event)">{{ item.value }}</p>
+    </li>
+</ul>
+```
